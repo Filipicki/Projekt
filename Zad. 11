@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+#include <chrono>
+
+using namespace std;
+
+void tablica(){
+
+  vector<float> tab;  //deklaracja wektora typu float
+    int r,temp;  // deklaracja ziennej typu int
+    cout << "Podaj rozmiar tablicy: ";
+    cin >> r;
+     cout << "-------------------------------------------------" << endl;
+    for(int i = 0; i < r; i++)
+    {
+        cout << "Podaj element "<<"["<<i+1<<"]"<<" tablicy: ";
+        cin >> temp; //zmienna tymczasowa
+        tab.push_back(temp); //dodaje element na sam koniec tablicy
+    }
+    cout << "-------------------------------------------------" << endl;
+
+    for(int i = 0; i < r; i++)
+    {
+        cout << "Element "<<"["<<i+1<<"]"<<" tablicy = "<<tab[i]<< endl;
+    }
+    cout << "-------------------------------------------------" << endl;
+int n=0;
+ int liczenie =0;
+            for(int i = 0; i + 1 < tab.size(); i++)
+    { n=0;
+        if(tab[i] > tab[i + 1])
+        {
+            cout <<"["<< tab[i] << "," << tab[i+1]<<"]"<< endl;
+            n++; //Jeśli if znajdzie podciąg, n się zwiększy
+        }
+ if(n !=0){ //jeśli n !=0 tzn, że znaleźliśmy podciąg
+    liczenie++; // zliczanie ilości ciągów
+    }
+    }
+ //jesli nie wyzerujemy n to gdy nie znajdziemy podciągu to liczenie i tak sie zwiększy o 1
+     cout <<"Liczba wszystkich podciagow malejacych to "<< liczenie<< endl;
+    }
+
+
+
+
+int main()
+{
+     auto start = chrono::steady_clock::now();
+tablica();
+auto finish = chrono::steady_clock::now();
+cout << "-------------------------------------------------" << endl;
+cout << "Czas wykonywania programu: " << chrono::duration_cast<chrono::microseconds>(finish-start).count()/1000000.0 << "s";
+    return 0;
+}
